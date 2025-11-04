@@ -1,30 +1,37 @@
 ﻿using System;
 
-class ContadorNumerosPositivos
+class CalculadoraPromedio
 {
     static void Main()
     {
-        int contador = 0;  // Inicializamos el contador de números positivos
-        int numero;
+        double suma = 0;  // Variable que acumula la suma de los números
+        int contador = 0; // Variable que cuenta la cantidad de números ingresados
+        string respuesta;
 
-        // Empezamos el ciclo while
-        while (true)
+        do
         {
             Console.Write("Ingresa un número: ");
-            numero = int.Parse(Console.ReadLine());
+            double numero = double.Parse(Console.ReadLine());
+            // Sumamos el número ingresado
+            suma += numero;
+            // Incrementamos el contador de números
+            contador++;  
 
-            // Verificamos si el número es negativo
-            if (numero < 0)
-            {
-                break;  // Si el número es negativo, salimos del ciclo
-            }
-            else
-            {
-                contador++;  // Si el número es positivo, incrementamos el contador
-            }
+            // Preguntamos si desea ingresar otro número
+            Console.Write("¿Deseas ingresar otro número? (s/n): ");
+            respuesta = Console.ReadLine().ToLower();
+            // Repetimos si la respuesta es "s"
+        } while (respuesta == "s");  
+
+        if (contador > 0)
+        {
+            // Calculamos el promedio
+            double promedio = suma / contador;  
+            Console.WriteLine("El promedio es: " + promedio);
         }
-
-        // Mostramos la cantidad de números positivos ingresados
-        Console.WriteLine("Cantidad de números positivos ingresados: " + contador);
+        else
+        {
+            Console.WriteLine("No se ingresaron números.");
+        }
     }
 }
